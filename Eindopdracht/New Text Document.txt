@@ -1,0 +1,46 @@
+-- Replace weird letters with their scrabble alternatives
+replaceCharacters :: String -> String
+replaceCharacters [] = [] 
+replaceCharacters word = do
+ 	replace "ä" "a" word
+	replace "à" "a" word
+	replace "á" "a" word
+	replace "â" "a" word
+	replace "ë" "e" word
+	replace "è" "e" word
+	replace "é" "e" word
+	replace "ê" "e" word
+	replace "ï" "i" word
+	replace "ì" "i" word
+	replace "í" "i" word
+	replace "î" "i" word
+	replace "ö" "o" word
+	replace "ò" "o" word
+	replace "ó" "o" word
+	replace "ô" "o" word
+	replace "ü" "u" word
+	replace "ù" "u" word
+	replace "ú" "u" word
+	replace "û" "u" word
+
+-- Replace weird letters with their scrabble alternatives
+replaceOdds :: String -> String
+replaceOdds [] = [] 
+replaceOdds word = concatMap (\y -> 
+	if y == 'ä' || y == 'à' || y == 'á' || y == 'â' then "a" else
+	if y == 'ë' || y == 'è' || y == 'é' || y == 'ê' then "e" else
+ 	if y == 'ï' || y == 'ì' || y == 'í' || y == 'î' then "i" else
+	if y == 'ö' || y == 'ò' || y == 'ó' || y == 'ô' then "o" else
+	if y == 'ü' || y == 'ù' || y == 'ú' || y == 'û' then "u" else
+	[y]) word
+
+-- Replace weird letters with their scrabble alternatives
+replace :: String -> String
+replace [] = [] 
+replace (x:xs) 
+ 	| x == 'ä' || x == 'à' || x == 'á' || x == 'â' = 'a':replace xs
+ 	| x == 'ë' || x == 'è' || x == 'é' || x == 'ê' = 'e':replace xs
+ 	| x == 'ï' || x == 'ì' || x == 'í' || x == 'î' = 'i':replace xs
+	| x == 'ö' || x == 'ò' || x == 'ó' || x == 'ô' = 'o':replace xs
+	| x == 'ü' || x == 'ù' || x == 'ú' || x == 'û' = 'u':replace xs
+	| otherwise = x:replace xs
